@@ -14,6 +14,10 @@ app.use(express.json());
 
 const calendarData = JSON.parse(fs.readFileSync(path.join(__dirname, 'calendar.json'), 'utf8'));
 
+app.get('/', (req, res) => {
+  res.send('API is running');
+});
+
 app.get('/api/best-leave-periods', (req, res) => {
   const maxLeaveDays = req.query.maxDays ? parseInt(req.query.maxDays) : 5;
   const startDate = new Date(req.query.startDate);
