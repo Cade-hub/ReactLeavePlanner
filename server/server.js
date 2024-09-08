@@ -35,6 +35,10 @@ app.listen(port, () => {
 function calculateBestLeavePeriods(calendarData, maxLeaveDays = 5, startDate, endDate) {
   const allPeriods = [];
 
+  console.log('Start Date:', startDate);
+  console.log('End Date:', endDate);
+  console.log('Calendar Data:', calendarData);
+
   Object.entries(calendarData).forEach(([year, months]) => {
     Object.entries(months).forEach(([month, days]) => {
       for (let startIndex = 0; startIndex < days.length; startIndex++) {
@@ -45,7 +49,6 @@ function calculateBestLeavePeriods(calendarData, maxLeaveDays = 5, startDate, en
           const periodStartDate = new Date(period[0].date);
           const periodEndDate = new Date(period[period.length - 1].date);
 
-          // Ensure the period is within the specified start and end dates
           if (
             periodStats.leaveDaysNeeded <= maxLeaveDays &&
             periodStartDate >= startDate &&
@@ -71,6 +74,8 @@ function calculateBestLeavePeriods(calendarData, maxLeaveDays = 5, startDate, en
     }
     return (b.totalDaysOff / b.leaveDaysNeeded) - (a.totalDaysOff / a.leaveDaysNeeded);
   });
+
+  console.log('All Periods:', allPeriods); // Debugging line
 
   return allPeriods.slice(0, 10);
 }
