@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 app.use(cors({
-  origin: ['https://cade-hub.github.io', 'http://localhost:3000']
+  origin: ['https://cade-hub.github.io', 'http://localhost:10000']
 }));
 const fs = require('fs');
 const path = require('path');
