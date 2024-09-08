@@ -1,5 +1,3 @@
-// src/components/LeaveCalculator.js
-
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import axios from 'axios';
@@ -16,7 +14,7 @@ function LeaveCalculator() {
   // Determine API URL based on environment
   const apiUrl = process.env.NODE_ENV === 'development'
     ? 'http://localhost:5000/api/best-leave-periods'  // Local development
-    : 'https://your-app.onrender.com/api/best-leave-periods'; // Render URL in production
+    : 'https://leave-planner-api.onrender.com'; // Render URL in production
 
   const handleDateChange = (value) => {
     setDateRange(value);
@@ -41,10 +39,18 @@ function LeaveCalculator() {
           maxDays: maxLeaveDays, // Ensure correct parameter name
         },
       });
-      setBestPeriods(response.data);
+
+      // Ensure the response is an array before setting it to state
+      if (Array.isArray(response.data)) {
+        setBestPeriods(response.data);
+      } else {
+        console.error('Unexpected response format:', response.data);
+        setBestPeriods([]); // fallback in case the data isn't an array
+      }
     } catch (error) {
       console.error('Error fetching best leave periods:', error);
       alert('An error occurred while calculating leave periods. Please try again.');
+      setBestPeriods([]); // fallback in case of error
     } finally {
       setIsLoading(false);
     }
@@ -105,7 +111,8 @@ function LeaveCalculator() {
         {isLoading ? 'Calculating...' : 'Calculate Best Leave Periods'}
       </button>
 
-      {bestPeriods.length > 0 && (
+      {/* Ensure we only render best periods if it's an array */}
+      {Array.isArray(bestPeriods) && bestPeriods.length > 0 && (
         <div className="mt-6">
           <h2 className="text-2xl font-bold mb-4 text-white">Best Leave Periods</h2>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
