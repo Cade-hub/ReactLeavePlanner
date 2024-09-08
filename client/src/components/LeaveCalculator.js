@@ -14,7 +14,7 @@ function LeaveCalculator() {
   // Determine API URL based on environment
   const apiUrl = process.env.NODE_ENV === 'development'
     ? 'http://localhost:5000/api/best-leave-periods'  // Local development
-    : 'https://leave-planner-api.onrender.com'; // Render URL in production
+    : 'https://leave-planner-api.onrender.com/api/best-leave-periods'; // Render URL in production
 
   const handleDateChange = (value) => {
     setDateRange(value);
