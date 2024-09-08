@@ -1,6 +1,9 @@
 // Server code (index.js or server.js)
 const express = require('express');
 const cors = require('cors');
+app.use(cors({
+  origin: ['https://cade-hub.github.io', 'http://localhost:3000']
+}));
 const fs = require('fs');
 const path = require('path');
 

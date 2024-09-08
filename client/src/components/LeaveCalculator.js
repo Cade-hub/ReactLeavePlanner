@@ -29,7 +29,7 @@ function LeaveCalculator() {
 
     setIsLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/best-leave-periods', {
+      const response = await axios.get('https://leave-planner-api.onrender.com', {
         params: {
           startDate: dateRange[0].toISOString().split('T')[0],
           endDate: dateRange[1].toISOString().split('T')[0],
