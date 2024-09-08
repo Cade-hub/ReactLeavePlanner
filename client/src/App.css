@@ -1,0 +1,136 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.custom-calendar {
+  @apply bg-gray-800 rounded-lg shadow-lg p-4;
+}
+
+.custom-calendar .react-calendar__tile {
+  @apply p-3 rounded-md transition-colors duration-200 text-white;
+}
+
+.custom-calendar .react-calendar__tile--now {
+  @apply bg-accent text-white;
+}
+
+.custom-calendar .react-calendar__tile--active {
+  @apply bg-accent bg-opacity-75 text-white;
+}
+
+.custom-calendar .react-calendar__tile--hover {
+  @apply bg-accent bg-opacity-50;
+}
+
+.custom-calendar .react-calendar__tile--rangeStart,
+.custom-calendar .react-calendar__tile--rangeEnd {
+  @apply bg-accent text-white;
+}
+
+.custom-calendar .react-calendar__tile--rangeBetween {
+  @apply bg-accent bg-opacity-50 text-white;
+}
+
+.custom-calendar .react-calendar__navigation button {
+  @apply text-white text-lg p-2 rounded-md hover:bg-gray-700 transition;
+}
+
+.custom-calendar .react-calendar__month-view__weekdays {
+  @apply text-accent font-bold;
+}
+
+.custom-calendar .react-calendar__tile:enabled:hover,
+.custom-calendar .react-calendar__tile:enabled:focus {
+  @apply bg-accent bg-opacity-50;
+}
+
+.custom-calendar .react-calendar__navigation__label__labelText {
+  @apply text-white text-lg;
+}
+
+.custom-calendar .react-calendar__month-view__days__day--weekend {
+  @apply text-red-300;
+}
+
+.custom-calendar .react-calendar__month-view__days__day--neighboringMonth {
+  @apply text-gray-500;
+}
+
+.custom-calendar .react-calendar__year-view__months__month,
+.custom-calendar .react-calendar__decade-view__years__year,
+.custom-calendar .react-calendar__century-view__decades__decade {
+  @apply text-white;
+}
+
+.custom-calendar .react-calendar__tile--non-working-day .tile-content {
+  @apply bg-gray-700 text-gray-300;
+}
+
+.custom-calendar .react-calendar__tile--leave-day .tile-content {
+  @apply bg-accent text-white relative;
+}
+
+.custom-calendar .react-calendar__tile--hovered .tile-content {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.tile-content {
+  @apply flex justify-center items-center w-full h-full rounded-md p-2;
+}
+
+.leave-indicator {
+  @apply absolute top-1 left-1 text-xs text-yellow-400;
+}
+
+.text-accent {
+  color: #f59e0b; /* Adjust this color to match your desired accent color */
+}
+
+.bg-primary {
+  background-color: #1f2937; /* Example primary background color */
+}
+
+.bg-secondary {
+  background-color: #4b5563; /* Example secondary background color */
+}
+
+.text-accent {
+  color: #10b981; /* Green accent color */
+}
+
+.bg-accent {
+  background-color: #10b981; /* Green accent color */
+}
+
+.bg-primary {
+  background-color: #1f2937; /* Example primary background color */
+}
+
+.bg-secondary {
+  background-color: #4b5563; /* Example secondary background color */
+}
+
+.period-item {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.period-details {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px;
+  background-color: rgba(31, 41, 55, 0.9); /* Slightly transparent dark background */
+  border-radius: 0.375rem; /* rounded-md */
+  color: white;
+  z-index: 10;
+  transition: all 0.3s ease-in-out;
+}
+
+.period-item:hover .period-details {
+  display: block;
+}
