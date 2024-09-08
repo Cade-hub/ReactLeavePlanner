@@ -1,16 +1,15 @@
 // Server code (index.js or server.js)
 const express = require('express');
 const cors = require('cors');
-app.use(cors({
-  origin: ['https://cade-hub.github.io', 'http://localhost:10000']
-}));
 const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 10000;
 
-app.use(cors());
+app.use(cors({
+  origin: ['https://cade-hub.github.io', 'http://localhost:10000']
+}));
 app.use(express.json());
 
 const calendarData = JSON.parse(fs.readFileSync(path.join(__dirname, 'calendar.json'), 'utf8'));
