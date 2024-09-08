@@ -13,6 +13,11 @@ function LeaveCalculator() {
   const [bestPeriods, setBestPeriods] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Determine API URL based on environment
+  const apiUrl = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000/api/best-leave-periods'  // Local development
+    : 'https://your-app.onrender.com/api/best-leave-periods'; // Render URL in production
+
   const handleDateChange = (value) => {
     setDateRange(value);
   };
@@ -29,7 +34,7 @@ function LeaveCalculator() {
 
     setIsLoading(true);
     try {
-      const response = await axios.get('https://leave-planner-api.onrender.com', {
+      const response = await axios.get(apiUrl, {
         params: {
           startDate: dateRange[0].toISOString().split('T')[0],
           endDate: dateRange[1].toISOString().split('T')[0],
