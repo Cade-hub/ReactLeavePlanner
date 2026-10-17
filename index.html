@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SA Leave Planner: the most days off for the least leave</title>
+<meta name="description" content="Free South African leave planner. Tell it how many leave days you have, and it finds the breaks that turn public holidays and weekends into the most days off in a row.">
+<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1110" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="SA Leave Planner">
+<meta property="og:description" content="The most days off for the least leave, planned around South African public holidays.">
+<link rel="icon" href="/ReactLeavePlanner/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script>
+  try {
+    var t = localStorage.getItem("lp-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+</head>
+<body>
+<div id="root"></div>
+<noscript>This planner runs in your browser and needs JavaScript switched on.</noscript>
+<script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
