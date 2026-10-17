@@ -1,4 +1,4 @@
-# CLAUDE.md: SA Leave Planner
+# CLAUDE.md: Leave Planner ("Maximising your leave")
 
 A free, client-side South African leave planner. Vite, React 18 and TypeScript, with no backend. Deployed to GitHub Pages at `/ReactLeavePlanner/`.
 
@@ -12,9 +12,12 @@ A free, client-side South African leave planner. Vite, React 18 and TypeScript, 
 - `src/lib/dates.ts`: days are **integers** (days since 1970-01-01 UTC). Do all date maths on these. Never use local `Date` arithmetic, because of time-zone and DST drift. All formatting goes through `Intl` with `timeZone: "UTC"`, `en-GB`.
 - `src/lib/holidays.ts`: Public Holidays Act rules, Easter, the Sunday rule, and `SPECIAL_HOLIDAYS`.
 - `src/lib/planner.ts`: `classify` (each day's kind), `plan` (knapsack over interval candidates), `quickWins`, `freeLongWeekends`.
-- `src/lib/state.ts`: app state, break styles (`STYLES`: maxPerBreak and power), period options, URL encode/decode.
+- `src/lib/state.ts`: app state, break styles (`STYLES`: maxPerBreak and power), suggested budget, quick-range presets, URL encode/decode.
 - `src/lib/ics.ts`: calendar export.
-- `src/components/*`: one component per section. `App.tsx` owns the state and keeps it in the URL query string.
+- `src/components/Calendar.tsx`: the range picker (2 months on wide screens, 1 on phones; always 6 rows so it never jumps). Its clicks pick the range, or cycle custom days in "mark days" mode.
+- `src/components/ResultBar.tsx`: the single result line under the calendar (days off, leave stepper, breaks, ratio).
+- `src/components/Drawer.tsx`: everything else (Plan, Best value, Holidays, Options). It's a side panel on desktop and a bottom sheet on phones.
+- `App.tsx` owns the state (range, leave override, style, custom days) and mirrors it in the URL query string.
 - `src/styles.css`: a single stylesheet with design tokens on `:root` and `[data-theme="dark"]`. The theme is set before paint by the inline script in `index.html` (localStorage key `lp-theme`).
 
 ## Keeping holidays current
@@ -26,7 +29,10 @@ When the President declares a once-off holiday (elections and so on), add it to 
 - Days outside the chosen range are `blocked` (no leave there), but breaks may run into ±14 padding days over weekends and holidays.
 - Changing the objective or styles? Keep the brute-force test in `planner.test.ts` passing (it uses power 1).
 
+## Landing-page rule (from Cade)
+On landing, show only the brand (logo, "Leave Planner", "Maximising your leave"), the phrase "Select a range and we'll calculate the best days to take to maximise your leave", and the calendar. No page scroll unless the screen is too small. New features go in the drawer, not on the main screen.
+
 ## Style
-- The product voice is plain, friendly and short. No hype. The UI is one editable sentence, then the answer.
+- The product voice is plain, friendly and short. No hype. The calendar comes first, then a single result line.
 - Palette: warm neutrals with green (`--accent`, leave) and amber (`--sun`, public holidays). Typography is Instrument Sans for the UI and Instrument Serif italic for the big numbers.
 - Respect `prefers-reduced-motion`. Keep it working on 360px-wide phones with no horizontal scroll.

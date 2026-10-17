@@ -1,10 +1,12 @@
-# SA Leave Planner
+# Leave Planner
 
-A free South African leave planner. Tell it how many leave days you have and how you like your breaks, and it works out when to take them so you get the most days off in a row for the least leave.
+*Maximising your leave.* A free South African leave planner. Pick a range on the calendar, and it works out which days to take off so public holidays and weekends give you the most days off in a row for the least leave.
 
 **Live:** https://cade-hub.github.io/ReactLeavePlanner/
 
 - Plans around every South African public holiday, including the Sunday-to-Monday rule and once-off declared days such as election days.
+- The landing page is just a calendar: tap a start date and an end date, and the leave days light up. The plan, best-value bridges, holiday list and options live in a details panel.
+- Suggests a leave budget for the range (what you'd accrue under the BCEA: 15 a year), and you can adjust it in one tap.
 - Picks the best set of breaks for your whole leave budget, not just the single best one.
 - Three styles: lots of long weekends, a good mix, or a few long breaks.
 - Tap any weekday to mark it as already off (a company shutdown) or as a day you can't take leave.
